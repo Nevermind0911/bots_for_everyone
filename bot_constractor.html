@@ -4,358 +4,239 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Конструктор Telegram-бота | TG Bots Studio</title>
-  <meta name="description" content="Соберите бота визуально — без кода.">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Соберите бота самостоятельно — без кода.">
 
   <style>
-    /* === Твой стиль + улучшения для конструктора === */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  /* === Уникальные стили ТОЛЬКО для конструктора === */
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
-      color: #0f172a;
-      background-color: #f3f4f6;
-    }
+  .constructor-section {
+    padding: 20px 0 60px;
+  }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+  .constructor-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  }
 
-    /* Header */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background-color: rgba(15, 23, 42, 0.96);
-      backdrop-filter: blur(10px);
-      color: #e5e7eb;
-    }
+  .constructor-container {
+    display: flex;
+    gap: 20px;
+    height: 650px;
+  }
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-    }
+  /* Левая панель — блоки */
+  .blocks-panel {
+    width: 240px;
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+  }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
+  .block-category {
+    margin-bottom: 20px;
+  }
 
-    .logo-mark { font-size: 20px; }
-    .logo-text { font-size: 16px; }
+  .block-category-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 10px;
+  }
 
-    .nav { display: flex; align-items: center; gap: 16px; }
-    .nav-link {
-      font-size: 14px;
-      opacity: 0.85;
-      padding: 6px 10px;
-      border-radius: 999px;
-      transition: background 0.15s;
-    }
-    .nav-link:hover { background: rgba(148,163,184,0.15); opacity: 1; }
-    .nav-link-primary {
-      background: #22c55e;
-      color: #052e16;
-      font-weight: 600;
-    }
-    .nav-link-primary:hover { background: #16a34a; }
+  .block-item {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: grab;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+  }
 
-    /* Hero */
-    .hero {
-      padding: 60px 0 40px;
-      background: radial-gradient(circle at top left, #1d4ed8 0, #0f172a 40%, #020617 100%);
-      color: #e5e7eb;
-    }
+  .block-icon {
+    font-size: 16px;
+  }
 
-    .hero-inner {
-      text-align: center;
-    }
+  /* Рабочая область */
+  .workspace {
+    flex: 1;
+    background: #f8fafc;
+    border-radius: 12px;
+    position: relative;
+    overflow: auto;
+    border: 1px solid #e2e8f0;
+  }
 
-    .hero-text h1 {
-      font-size: 36px;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
+  .step-block {
+    position: absolute;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 240px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+    cursor: move;
+    user-select: none;
+    z-index: 1;
+  }
 
-    .accent { color: #22c55e; }
+  .step-block.selected {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3);
+  }
 
-    .hero-subtitle {
-      font-size: 18px;
-      opacity: 0.95;
-      margin: 0 auto 28px;
-      max-width: 700px;
-    }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+  }
 
-    /* Конструктор */
-    .constructor-section {
-      padding: 20px 0 60px;
-    }
+  .step-content {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #334155;
+    padding: 8px 0;
+  }
 
-    .constructor-card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-    }
+  .step-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #6b7280;
+  }
 
+  .step-footer button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.1s;
+  }
+
+  .step-footer button:hover {
+    background: #e2e8f0;
+  }
+
+  /* Соединительные линии */
+  .connection-line {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    stroke: #94a3b8;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  /* Правая панель — редактор */
+  .editor-panel {
+    width: 300px;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .editor-header {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1e293b;
+  }
+
+  .editor-tab {
+    background: #f1f5f9;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .editor-tab.active {
+    background: #22c55e;
+    color: white;
+  }
+
+  .editor-content {
+    margin-top: 16px;
+  }
+
+  .editor-field {
+    margin-bottom: 16px;
+  }
+
+  .editor-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #334155;
+  }
+
+  .editor-input,
+  .editor-textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .editor-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .editor-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .editor-button {
+    width: 100%;
+    padding: 10px;
+    background: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+
+  .editor-button:hover {
+    background: #16a34a;
+  }
+
+  /* Адаптив */
+  @media (max-width: 1024px) {
     .constructor-container {
-      display: flex;
-      gap: 20px;
-      height: 650px;
+      flex-direction: column;
+      height: auto;
     }
-
-    /* Левая панель — блоки */
-    .blocks-panel {
-      width: 240px;
-      background: #f9fafb;
-      border-radius: 12px;
-      padding: 16px;
-      border: 1px solid #e2e8f0;
-    }
-
-    .block-category {
-      margin-bottom: 20px;
-    }
-
-    .block-category-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #334155;
-      margin-bottom: 10px;
-    }
-
-    .block-item {
-      background: white;
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 8px;
-      cursor: grab;
-      border: 1px solid #e2e8f0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      user-select: none;
-    }
-
-    .block-icon {
-      font-size: 16px;
-    }
-
-    /* Рабочая область */
-    .workspace {
-      flex: 1;
-      background: #f8fafc;
-      border-radius: 12px;
-      position: relative;
-      overflow: auto;
-      border: 1px solid #e2e8f0;
-    }
-
-    .step-block {
-      position: absolute;
-      background: white;
-      border-radius: 12px;
-      padding: 16px;
-      min-width: 240px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      border: 1px solid #e2e8f0;
-      cursor: move;
-      user-select: none;
-      z-index: 1;
-    }
-
-    .step-block.selected {
-      border-color: #22c55e;
-      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3);
-    }
-
-    .step-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .step-content {
-      font-size: 13px;
-      line-height: 1.5;
-      color: #334155;
-      padding: 8px 0;
-    }
-
-    .step-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: #6b7280;
-    }
-
-    .step-footer button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #6b7280;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: background 0.1s;
-    }
-
-    .step-footer button:hover {
-      background: #e2e8f0;
-    }
-
-    /* Соединительные линии */
-    .connection-line {
-      position: absolute;
-      pointer-events: none;
-      z-index: 0;
-      stroke: #94a3b8;
-      stroke-width: 2;
-      fill: none;
-    }
-
-    /* Правая панель — редактор */
+    .blocks-panel,
     .editor-panel {
-      width: 300px;
-      background: white;
-      border-radius: 12px;
-      padding: 16px;
-      border: 1px solid #e2e8f0;
-    }
-
-    .editor-header {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      color: #1e293b;
-    }
-
-    .editor-tab {
-      background: #f1f5f9;
-      padding: 8px 12px;
-      border-radius: 6px;
-      margin-right: 8px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .editor-tab.active {
-      background: #22c55e;
-      color: white;
-    }
-
-    .editor-content {
-      margin-top: 16px;
-    }
-
-    .editor-field {
-      margin-bottom: 16px;
-    }
-
-    .editor-label {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 6px;
-      color: #334155;
-    }
-
-    .editor-input,
-    .editor-textarea {
       width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 14px;
     }
-
-    .editor-textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    .editor-checkbox {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .editor-button {
-      width: 100%;
-      padding: 10px;
-      background: #22c55e;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
-
-    .editor-button:hover {
-      background: #16a34a;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.15s ease;
-    }
-
-    .btn-primary {
-      background-color: #22c55e;
-      color: #052e16;
-      border: none;
-    }
-
-    .btn-primary:hover {
-      background-color: #16a34a;
-      transform: translateY(-1px);
-    }
-
-    /* Footer */
-    .footer {
-      border-top: 1px solid #e5e7eb;
-      background: #f9fafb;
-      padding: 16px 0;
-      font-size: 13px;
-      color: #6b7280;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    @media (max-width: 1024px) {
-      .constructor-container { flex-direction: column; height: auto; }
-      .blocks-panel, .editor-panel { width: 100%; }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
@@ -376,7 +257,7 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-inner">
-      <h1>Соберите бота <span class="accent">визуально</span></h1>
+      <h1>Соберите бота <span class="accent">самостоятельно</span></h1>
       <p class="hero-subtitle">
         Соберите бота из простых и понятных блоков → настраивайте логику → отправляйте админу по нажатию кнопки → получите готового бота.
       </p>
