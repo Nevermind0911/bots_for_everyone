@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Telegram-боты под ключ | Создание ботов для бизнеса</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description"
+        content="Создаю Telegram-ботов под ключ: для записей, магазинов, чат-поддержки, приема заявок. Фиксированные тарифы, быстрые сроки.">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo">
+                <!-- Можно заменить на картинку -->
+                <span class="logo-mark">🤖</span>
+                <span class="logo-text">BotWork</span>
+            </div>
+
+            <nav class="nav">
+                <a href="#bots" class="nav-link">Тарифы</a>
+                <a href="#how" class="nav-link">Как работаем</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="bot_constractor.html" class="nav-link">Попробовать конструктор</a>
+                <a href="#contact" class="nav-link nav-link-primary">Написать в Telegram</a>
+            </nav>
+
+            <button class="burger" id="burger-button" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero блок -->
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h1>Создаю Telegram-ботов <span class="accent">под ваш бизнес</span></h1>
+                    <p class="hero-subtitle">
+                        Запись клиентов, приём заявок, мини-интернет-магазин, рассылки —
+                        всё внутри Telegram. Без сложных приложений и лишней бюрократии.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://t.me/@borysikkk" class="btn btn-primary" target="_blank" rel="noopener">
+                            Обсудить бота в Telegram
+                        </a>
+                        <a href="#bots" class="btn btn-secondary">
+                            Смотреть варианты ботов
+                        </a>
+                    </div>
+                    <p class="hero-note">
+                        От первого прототипа до запуска — от 3 до 7 дней.
+                    </p>
+                </div>
+
+                <div class="hero-card">
+                    <h2>Что я могу автоматизировать:</h2>
+                    <ul class="hero-list">
+                        <li>✔ Запись на услуги (салоны, репетиторы, консультации)</li>
+                        <li>✔ Приём и обработка заявок</li>
+                        <li>✔ Магазин с корзиной и оплатой</li>
+                        <li>✔ Ответы на частые вопросы (FAQ-бот)</li>
+                        <li>✔ Рассылка сообщений по базе</li>
+                    </ul>
+                    <a href="https://t.me/@borysikkk" class="hero-card-cta" target="_blank" rel="noopener">
+                        Написать в Telegram →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Варианты ботов (конвейер / список) -->
+        <section class="section" id="bots">
+            <div class="container">
+                <h2 class="section-title">Варианты Telegram-ботов</h2>
+                <p class="section-subtitle">
+                    Ниже — базовые типы ботов. Можно взять готовый тариф или собрать кастомное решение.
+                </p>
+
+                <!-- Конвейер: горизонтальный список карточек -->
+                <div class="bots-scroller-wrapper">
+                    <button class="scroll-btn scroll-btn-left" id="scroll-left" aria-label="Прокрутить влево">
+                        ←
+                    </button>
+
+                    <div class="bots-scroller" id="bots-scroller">
+                        <!-- Карточка 1 -->
+                        <article class="bot-card">
+                            <div class="bot-card-header">
+                                <h3>Бот-визитка</h3>
+                                <span class="bot-tag">для личного бренда</span>
+                            </div>
+                            <p class="bot-price">от 5 000 ₽</p>
+                            <ul class="bot-list">
+                                <li>Кратко рассказывает о вас / компании</li>
+                                <li>Ссылки на соцсети и портфолио</li>
+                                <li>Кнопка «написать» и «заказать»</li>
+                                <li>Простой сценарий диалога</li>
+                            </ul>
+                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
+                                rel="noopener">
+                                Заказать бот-визитку в Telegram
+                            </a>
+                        </article>
+
+                        <!-- Карточка 2 -->
+                        <article class="bot-card">
+                            <div class="bot-card-header">
+                                <h3>Бот для заявок</h3>
+                                <span class="bot-tag">для услуг и консультаций</span>
+                            </div>
+                            <p class="bot-price">от 7 000 ₽</p>
+                            <ul class="bot-list">
+                                <li>Сбор контактов и описания задачи</li>
+                                <li>Передача заявок вам в личку или в чат</li>
+                                <li>Простая админ-панель в Telegram</li>
+                                <li>Настраиваемые вопросы</li>
+                            </ul>
+                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
+                                rel="noopener">
+                                Оставить заявку через Telegram
+                            </a>
+                        </article>
+
+                        <!-- Карточка 3 -->
+                        <article class="bot-card">
+                            <div class="bot-card-header">
+                                <h3>Магазин-бот</h3>
+                                <span class="bot-tag">для товаров и инфопродуктов</span>
+                            </div>
+                            <p class="bot-price">от 10 000 ₽</p>
+                            <ul class="bot-list">
+                                <li>Каталог товаров / услуг</li>
+                                <li>Корзина и оформление заказа</li>
+                                <li>Интеграция с оплатой (по договорённости)</li>
+                                <li>Уведомления о новых заказах</li>
+                            </ul>
+                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
+                                rel="noopener">
+                                Обсудить магазин-бота в Telegram
+                            </a>
+                        </article>
+
+                        <!-- Карточка 4 -->
+                        <article class="bot-card">
+                            <div class="bot-card-header">
+                                <h3>FAQ-бот / поддержка</h3>
+                                <span class="bot-tag">снижение нагрузки</span>
+                            </div>
+                            <p class="bot-price">от 12 000 ₽</p>
+                            <ul class="bot-list">
+                                <li>Ответы на частые вопросы клиентов</li>
+                                <li>Маршрутизация к живому менеджеру</li>
+                                <li>Сбор обратной связи</li>
+                                <li>Простые сценарии на кнопках</li>
+                            </ul>
+                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
+                                rel="noopener">
+                                Заказать FAQ-бота в Telegram
+                            </a>
+                        </article>
+
+                        <!-- Карточка 5 -->
+                        <article class="bot-card">
+                            <div class="bot-card-header">
+                                <h3>Кастомный бот</h3>
+                                <span class="bot-tag">под вашу идею</span>
+                            </div>
+                            <p class="bot-price">от 15 000 ₽</p>
+                            <ul class="bot-list">
+                                <li>Индивидуальная логика и сценарии</li>
+                                <li>Интеграции с API и сервисами</li>
+                                <li>Подбор архитектуры под нагрузку</li>
+                                <li>Сопровождение и доработка</li>
+                            </ul>
+                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
+                                rel="noopener">
+                                Обсудить кастомного бота
+                            </a>
+                        </article>
+
+                        <!-- Карточка: Конструктор ботов -->
+<article class="bot-card">
+  <div class="bot-card-header">
+    <h3>Конструктор ботов</h3>
+    <span class="bot-tag">создайте свой сценарий</span>
+  </div>
+  <p class="bot-price">Зависит от объема</p>
+  <ul class="bot-list">
+    <li>Самостоятельно соберите логику бота</li>
+    <li>Настройте сообщения, кнопки, оплату</li>
+    <li>Отправьте мне — обсудим и запустим</li>
+    <li>Идеально для кастомных идей</li>
+  </ul>
+  <a href="constructor.html" class="btn btn-outline bot-btn">
+    Попробовать конструктор
+  </a>
+</article>
+                    </div>
+
+                    <button class="scroll-btn scroll-btn-right" id="scroll-right" aria-label="Прокрутить вправо">
+                        →
+                    </button>
+                </div>
+
+                <!-- Альтернативно: обычный список (на мобиле он и так выглядит как список) -->
+                <p class="section-note">
+                    Не нашли подходящий вариант? Напишите, и я предложу решение под вашу задачу.
+                </p>
+            </div>
+        </section>
+
+        <!-- Как мы работаем -->
+        <section class="section section-alt" id="how">
+            <div class="container">
+                <h2 class="section-title">Как идёт работа</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Заявка в Telegram</h3>
+                        <p>Вы пишете мне в Telegram, кратко описываете задачу и что хотите от бота.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Обсуждение и сценарий</h3>
+                        <p>Совместно формируем структуру бота: какие кнопки, ветки диалога, интеграции.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Разработка и тестирование</h3>
+                        <p>Реализую бота, даю доступ для проверки, правим по замечаниям.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Запуск и поддержка</h3>
+                        <p>Запускаем бота, объясняю, как пользоваться. По желанию — поддержка и доработки.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+            <div class="container">
+                <h2 class="section-title">Частые вопросы</h2>
+
+                <div class="faq-list">
+                    <details class="faq-item" open>
+                        <summary>Сколько времени занимает создание бота?</summary>
+                        <p>
+                            Простые боты (визитка, бот для заявок) — от 3 до 5 дней.
+                            Более сложные (магазин, интеграции) — от 7 дней, зависит от задачи.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Нужен ли мне свой сервер?</summary>
+                        <p>
+                            Зависит от нагрузки и логики бота. Для простых ботов можно использовать недорогой хостинг
+                            или готовые решения. При обсуждении я предложу оптимальный вариант.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Вы помогаете с идеей и сценарием?</summary>
+                        <p>
+                            Да, помогаю структурировать задачу, предложу варианты логики и подскажу, что лучше
+                            автоматизировать.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Можно ли потом доработать бота?</summary>
+                        <p>
+                            Да, по договорённости можно добавлять новые функции, интеграции и менять логику.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section class="section section-alt" id="contact">
+            <div class="container contact-inner">
+                <div>
+                    <h2 class="section-title">Написать мне в Telegram</h2>
+                    <p class="section-subtitle">
+                        Кратко опишите, какой бот вам нужен: для чего, что он должен уметь и какие сроки.
+                    </p>
+                    <ul class="contact-list">
+                        <li>✔ Отвечу на вопросы и помогу выбрать формат бота</li>
+                        <li>✔ Сориентирую по срокам и стоимости</li>
+                        <li>✔ Предложу несколько вариантов реализации</li>
+                    </ul>
+                    <a href="https://t.me/@borysikkk" class="btn btn-primary contact-btn" target="_blank"
+                        rel="noopener">
+                        Написать в Telegram
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <span>© 2025 BotWorks. Создание Telegram-ботов.</span>
+            <a href="https://t.me/@borysikkk" target="_blank" rel="noopener">Связаться в Telegram</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

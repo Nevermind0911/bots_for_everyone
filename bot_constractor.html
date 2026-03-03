@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Конструктор Telegram-бота | BotWork </title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Соберите бота самостоятельно — без кода.">
+
+  <style>
+  /* === Уникальные стили ТОЛЬКО для конструктора === */
+
+  .constructor-section {
+    padding: 20px 0 60px;
+  }
+
+  .constructor-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  }
+
+  .constructor-container {
+    display: flex;
+    gap: 20px;
+    height: 650px;
+  }
+
+  /* Левая панель — блоки */
+  .blocks-panel {
+    width: 240px;
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .block-category {
+    margin-bottom: 20px;
+  }
+
+  .block-category-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 10px;
+  }
+
+  .block-item {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: grab;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+  }
+
+  .block-icon {
+    font-size: 16px;
+  }
+
+  /* Рабочая область */
+  .workspace {
+    flex: 1;
+    background: #f8fafc;
+    border-radius: 12px;
+    position: relative;
+    overflow: auto;
+    border: 1px solid #e2e8f0;
+  }
+
+  .step-block {
+    position: absolute;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 240px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+    cursor: move;
+    user-select: none;
+    z-index: 1;
+  }
+
+  .step-block.selected {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .step-content {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #334155;
+    padding: 8px 0;
+  }
+
+  .step-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .step-footer button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.1s;
+  }
+
+  .step-footer button:hover {
+    background: #e2e8f0;
+  }
+
+  /* Соединительные линии */
+  .connection-line {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    stroke: #94a3b8;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  /* Правая панель — редактор */
+  .editor-panel {
+    width: 300px;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .editor-header {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1e293b;
+  }
+
+  .editor-tab {
+    background: #f1f5f9;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .editor-tab.active {
+    background: #22c55e;
+    color: white;
+  }
+
+  .editor-content {
+    margin-top: 16px;
+  }
+
+  .editor-field {
+    margin-bottom: 16px;
+  }
+
+  .editor-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #334155;
+  }
+
+  .editor-input,
+  .editor-textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .editor-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .editor-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .editor-button {
+    width: 100%;
+    padding: 10px;
+    background: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+
+  .editor-button:hover {
+    background: #16a34a;
+  }
+
+  /* Адаптив */
+  @media (max-width: 1024px) {
+    .constructor-container {
+      flex-direction: column;
+      height: auto;
+    }
+    .blocks-panel,
+    .editor-panel {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-mark">🤖</span>
+        <span class="logo-text">BotWork </span>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Тарифы</a>
+        <a href="bot_constractor.html" class="nav-link nav-link-primary">Конструктор</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Соберите бота <span class="accent">самостоятельно</span></h1>
+      <p class="hero-subtitle">
+        Соберите бота из простых и понятных блоков → настраивайте логику → отправляйте админу по нажатию кнопки → получите готового бота.
+      </p>
+    </div>
+  </section>
+
+  <!-- Блок описания (инструкция) -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div style="
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid #e2e8f0;
+    ">
+      <h2 style="font-size: 20px; margin-bottom: 12px; color: #0f172a;">Как пользоваться конструктором</h2>
+      <ol style="font-size: 14px; line-height: 1.7; color: #475569; padding-left: 20px;">
+        <li><strong>Перетащите блоки</strong> из левой панели в рабочую область.</li>
+        <li><strong>Кликните по блоку</strong> — откроется редактор справа, где можно настроить текст, ссылки, медиа.</li>
+        <li><strong>Задайте название</strong> — например, «Сообщение о футболке» или «Оплата курса».</li>
+        <li><strong>Соедините блоки</strong> через выпадающий список «Следующий блок» — будет стрелка между ними.</li>
+        <li><strong>Нажмите «Отправить сценарий»</strong> — я получу вашу логику и свяжусь для обсуждения цены и запуска.</li>
+      </ol>
+      <p style="font-size: 14px; margin-top: 16px; color: #64748b;">
+        ⚡ Бот будет готов за несколько дней. Поддержка и доработки — по договорённости.
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- Конструктор -->
+  <section class="constructor-section">
+    <div class="container">
+      <div class="constructor-card">
+        <div class="constructor-container">
+          <!-- Блоки -->
+          <div class="blocks-panel">
+            <div class="block-category">
+              <div class="block-category-title">Запуск</div>
+              <div class="block-item" data-type="command" draggable="true">
+                <span class="block-icon">▶️</span> Команда /start
+              </div>
+            </div>
+            <div class="block-category">
+              <div class="block-category-title">Действия</div>
+              <div class="block-item" data-type="message" draggable="true">
+                <span class="block-icon">💬</span> Сообщение
+              </div>
+              <div class="block-item" data-type="buttons" draggable="true">
+                <span class="block-icon">🔘</span> Кнопки
+              </div>
+              <div class="block-item" data-type="media" draggable="true">
+                <span class="block-icon">🖼️</span> Фото/Видео/Файл
+              </div>
+              <div class="block-item" data-type="collect" draggable="true">
+                <span class="block-icon">📝</span> Сбор данных
+              </div>
+              <div class="block-item" data-type="payment" draggable="true">
+                <span class="block-icon">💳</span> Оплата
+              </div>
+              <div class="block-item" data-type="delay" draggable="true">
+                <span class="block-icon">⏱️</span> Задержка
+              </div>
+              <div class="block-item" data-type="condition" draggable="true">
+                <span class="block-icon">🔀</span> Условие
+              </div>
+            </div>
+          </div>
+
+          <!-- Рабочая область -->
+          <div class="workspace" id="workspace">
+            <!-- Динамические блоки и линии будут сюда -->
+          </div>
+
+          <!-- Редактор -->
+          <div class="editor-panel" id="editor">
+            <div class="editor-header">Выберите блок</div>
+            <p style="font-size: 13px; color: #64748b;">Нажмите на любой блок в рабочей области, чтобы отредактировать его.</p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 24px;">
+          <button id="sendToAdminBtn" class="btn btn-primary">
+            Отправить сценарий мне в Telegram
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2025 BotWorks </span>
+      <a href="https://t.me/@borysikkk" target="_blank">Связаться в Telegram</a>
+    </div>
+  </footer>
+
+  <script>
+    let selectedBlock = null;
+    let blocks = [];
+    let connections = [];
+    let blockIdCounter = 1;
+
+    const workspace = document.getElementById('workspace');
+    const editor = document.getElementById('editor');
+
+    // Добавление блока
+    function addBlock(type, x = 100, y = 100, data = {}) {
+      const id = 'block-' + blockIdCounter++;
+      let title = '', icon = '', defaultContent = '';
+
+      switch (type) {
+        case 'command':
+          title = 'Команда /start';
+          icon = '▶️';
+          defaultContent = 'Привет! Это стартовый блок.';
+          break;
+        case 'message':
+          title = 'Сообщение';
+          icon = '💬';
+          defaultContent = 'Привет! Это сообщение.';
+          break;
+        case 'buttons':
+          title = 'Кнопки';
+          icon = '🔘';
+          defaultContent = '["Да", "Нет"]';
+          break;
+        case 'media':
+          title = 'Медиа';
+          icon = '🖼️';
+          defaultContent = 'https://example.com/photo.jpg';
+          break;
+        case 'collect':
+          title = 'Сбор данных';
+          icon = '📝';
+          defaultContent = 'Введите ваше имя:';
+          break;
+        case 'payment':
+          title = 'Оплата';
+          icon = '💳';
+          defaultContent = 'https://pay.example.com';
+          break;
+        case 'delay':
+          title = 'Задержка';
+          icon = '⏱️';
+          defaultContent = '5';
+          break;
+        case 'condition':
+          title = 'Условие';
+          icon = '🔀';
+          defaultContent = 'Если ответ == "Да"';
+          break;
+      }
+
+      const block = {
+        id,
+        type,
+        displayName: title, // ← можно менять
+        title, // ← исходное название (для типа)
+        icon,
+        content: data.content || defaultContent,
+        x,
+        y,
+        next: null
+      };
+      blocks.push(block);
+
+      renderBlock(block);
+      return block;
+    }
+
+    function renderBlock(block) {
+      const el = document.createElement('div');
+      el.className = 'step-block';
+      el.id = block.id;
+      el.style.left = block.x + 'px';
+      el.style.top = block.y + 'px';
+      el.innerHTML = `
+        <div class="step-header">
+          <span>${block.icon}</span>
+          <span>${block.displayName}</span>
+        </div>
+        <div class="step-content">${block.content}</div>
+        <div class="step-footer">
+          <span>Следующий шаг →</span>
+          <button class="delete-btn">×</button>
+        </div>
+      `;
+
+      // Выбор блока
+      el.addEventListener('click', (e) => {
+        if (selectedBlock) document.getElementById(selectedBlock).classList.remove('selected');
+        selectedBlock = block.id;
+        el.classList.add('selected');
+        openEditor(block);
+        e.stopPropagation();
+      });
+
+      // Удаление
+      el.querySelector('.delete-btn').addEventListener('click', () => {
+        el.remove();
+        blocks = blocks.filter(b => b.id !== block.id);
+        connections = connections.filter(c => c.from !== block.id && c.to !== block.id);
+        redrawConnections();
+        selectedBlock = null;
+        editor.innerHTML = '<div class="editor-header">Выберите блок</div><p style="font-size:13px;color:#64748b;">Нажмите на любой блок...</p>';
+      });
+
+      // Перетаскивание
+      let isDragging = false, offsetX, offsetY;
+      el.addEventListener('mousedown', (e) => {
+        if (e.target.classList.contains('delete-btn')) return;
+        isDragging = true;
+        offsetX = e.clientX - el.getBoundingClientRect().left;
+        offsetY = e.clientY - el.getBoundingClientRect().top;
+        el.style.zIndex = '1000';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const rect = workspace.getBoundingClientRect();
+        let newX = e.clientX - rect.left - offsetX;
+        let newY = e.clientY - rect.top - offsetY;
+        newX = Math.max(0, Math.min(newX, rect.width - el.offsetWidth));
+        newY = Math.max(0, Math.min(newY, rect.height - el.offsetHeight));
+        el.style.left = newX + 'px';
+        el.style.top = newY + 'px';
+        const b = blocks.find(b => b.id === block.id);
+        if (b) { b.x = newX; b.y = newY; }
+        redrawConnections();
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        if (el) el.style.zIndex = '';
+      });
+
+      workspace.appendChild(el);
+
+      if (block.next) {
+        drawConnection(block.id, block.next);
+      }
+    }
+
+    function drawConnection(fromId, toId) {
+      const from = document.getElementById(fromId);
+      const to = document.getElementById(toId);
+      if (!from || !to) return;
+
+      const fromRect = from.getBoundingClientRect();
+      const toRect = to.getBoundingClientRect();
+      const workspaceRect = workspace.getBoundingClientRect();
+
+      const startX = fromRect.left + fromRect.width / 2 - workspaceRect.left;
+      const startY = fromRect.bottom - workspaceRect.top;
+      const endX = toRect.left + toRect.width / 2 - workspaceRect.left;
+      const endY = toRect.top - workspaceRect.top;
+
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      line.setAttribute('class', 'connection-line');
+      line.setAttribute('width', '100%');
+      line.setAttribute('height', '100%');
+      line.innerHTML = `<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" />`;
+
+      workspace.appendChild(line);
+      connections.push({ from: fromId, to: toId, element: line });
+    }
+
+    function redrawConnections() {
+      connections.forEach(c => {
+        if (c.element) c.element.remove();
+      });
+      connections = [];
+
+      blocks.forEach(block => {
+        if (block.next) {
+          drawConnection(block.id, block.next);
+        }
+      });
+    }
+
+    function openEditor(block) {
+      let editorHTML = `
+        <div class="editor-header">${block.icon} ${block.title}</div>
+        <div class="editor-field">
+          <label class="editor-label">Название блока (для вас)</label>
+          <input class="editor-input" id="edit-display-name" value="${block.displayName}">
+        </div>
+      `;
+
+      switch (block.type) {
+        case 'command':
+          const [cmd = '/start', text = 'Привет!'] = block.content.split(':', 2);
+          editorHTML += `
+            <div class="editor-field">
+              <label class="editor-label">Команда</label>
+              <input class="editor-input" id="edit-command" value="${cmd}">
+            </div>
+            <div class="editor-field">
+              <label class="editor-label">Текст</label>
+              <textarea class="editor-textarea" id="edit-content">${text}</textarea>
+            </div>
+          `;
+          break;
+        case 'message':
+          editorHTML += `
+            <div class="editor-field">
+              <label class="editor-label">Текст</label>
+              <textarea class="editor-textarea" id="edit-content">${block.content}</textarea>
+            </div>
+          `;
+          break;
+        case 'buttons':
+          editorHTML += `
+            <div class="editor-field">
+              <label class="editor-label">Кнопки (по одной на строку)</label>
+              <textarea class="editor-textarea" id="edit-buttons">${block.content.replace(/\["|"\]/g, '').replace(/",\s?"/g, '\n')}</textarea>
+            </div>
+            <div class="editor-checkbox">
+              <input type="checkbox" id="edit-inline" ${block.content.includes('Inline') ? 'checked' : ''}>
+              <label for="edit-inline">Инлайн-кнопки (ссылки)</label>
+            </div>
+          `;
+          break;
+        case 'media':
+          editorHTML += `
+            <div class="editor-field">
+              <label class="editor-label">URL или file_id</label>
+              <input class="editor-input" id="edit-media-url" value="${block.content}">
+            </div>
+            <div class="editor-field">
+              <label class="editor-label">Тип</label>
+              <select class="editor-input" id="edit-media-type">
+                <option value="photo">Фото</option>
+                <option value="video">Видео</option>
+                <option value="document">Документ</option>
+              </select>
+            </div>
+          `;
+          break;
+        case 'collect':
+          editorHTML += `
+            <div class="editor-field">
+              <label class="editor-label">Вопрос</label>
+              <input class="editor-input" id="edit-collect-question" value="${block.content}">
+            </div>
+            <div class="editor-field">
+              <label class="editor-label">Имя поля (например, email)</label>
+              <input class="editor-input" id="edit-collect-field" value="user_name">
+            </div>
+          `;
+          break;
+        case 'payment':
+          editorHTML += `
+            <div class="editor-field">
+              <label class="editor-label">Ссылка на оплату</label>
+              <input class="editor-input" id="edit-payment-url" value="${block.content}">
+            </div>
+            <div class="editor-field">
+              <label class="editor-label">Текст кнопки</label>
+              <input class="editor-input" id="edit-payment-text" value="Оплатить">
+            </div>
+          `;
+          break;
+        case 'delay':
+          editorHTML += `
+            <div class="editor-field">
+              <label class="editor-label">Задержка (секунд)</label>
+              <input class="editor-input" type="number" id="edit-delay-seconds" value="${block.content}">
+            </div>
+          `;
+          break;
+        case 'condition':
+          editorHTML += `
+            <div class="editor-field">
+              <label class="editor-label">Условие</label>
+              <input class="editor-input" id="edit-condition" value="${block.content}">
+            </div>
+            <div style="font-size:12px;color:#6b7280;margin-top:4px;">
+              Пример: "ответ содержит 'купить'"
+            </div>
+          `;
+          break;
+      }
+
+      editorHTML += `
+        <div class="editor-field">
+          <label class="editor-label">Следующий блок</label>
+          <select class="editor-input" id="edit-next-block">
+            <option value="">Нет</option>
+            ${blocks.map(b => `<option value="${b.id}" ${block.next === b.id ? 'selected' : ''}>${b.displayName}</option>`).join('')}
+          </select>
+        </div>
+        <button class="editor-button" id="save-edit">Сохранить</button>
+      `;
+
+      editor.innerHTML = editorHTML;
+
+      // Сохранение
+      document.getElementById('save-edit').addEventListener('click', () => {
+        block.displayName = document.getElementById('edit-display-name').value.trim() || block.title;
+
+        let newContent = '';
+        switch (block.type) {
+          case 'command':
+            const cmd = document.getElementById('edit-command').value.trim();
+            const text = document.getElementById('edit-content').value.trim();
+            newContent = `${cmd}:${text}`;
+            break;
+          case 'message':
+            newContent = document.getElementById('edit-content').value;
+            break;
+          case 'buttons':
+            const btns = document.getElementById('edit-buttons').value.split('\n').filter(b => b.trim()).map(b => `"${b.trim()}"`).join(', ');
+            newContent = `[${btns}]`;
+            break;
+          case 'media':
+            newContent = document.getElementById('edit-media-url').value.trim();
+            break;
+          case 'collect':
+            newContent = document.getElementById('edit-collect-question').value.trim();
+            break;
+          case 'payment':
+            newContent = document.getElementById('edit-payment-url').value.trim();
+            break;
+          case 'delay':
+            newContent = document.getElementById('edit-delay-seconds').value;
+            break;
+          case 'condition':
+            newContent = document.getElementById('edit-condition').value.trim();
+            break;
+        }
+
+        block.content = newContent;
+        document.querySelector(`#${block.id} .step-header span:last-child`).textContent = block.displayName;
+        document.querySelector(`#${block.id} .step-content`).textContent = newContent;
+
+        const nextId = document.getElementById('edit-next-block').value;
+        block.next = nextId;
+        redrawConnections();
+      });
+    }
+
+    // Drag & Drop
+    document.querySelectorAll('.block-item').forEach(item => {
+      item.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('type', item.dataset.type);
+      });
+    });
+
+    workspace.addEventListener('dragover', (e) => e.preventDefault());
+    workspace.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const type = e.dataTransfer.getData('type');
+      const rect = workspace.getBoundingClientRect();
+      const x = e.clientX - rect.left - 120;
+      const y = e.clientY - rect.top - 60;
+      addBlock(type, x, y);
+    });
+
+    // Отправка
+    document.getElementById('sendToAdminBtn').addEventListener('click', () => {
+      if (blocks.length === 0) {
+        alert('Добавьте хотя бы один блок!');
+        return;
+      }
+      let text = 'Сценарий бота:\n\n';
+      blocks.forEach((b, i) => {
+        text += `${i + 1}. ${b.displayName}: "${b.content}"\n`;
+        if (b.next) {
+          const next = blocks.find(bl => bl.id === b.next);
+          if (next) text += `   → Следующий: ${next.displayName}\n`;
+        }
+      });
+      text += '\nЗапрос на разработку.';
+      window.open(`https://t.me/@borysikkk?text=${encodeURIComponent(text)}`, '_blank');
+    });
+  </script>
+
+</body>
+</html>
