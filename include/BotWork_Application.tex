@@ -1,0 +1,444 @@
+% BotWork — Заявка «Студенческий Стартап» (VII очередь)
+% Компиляция из каталога include/:
+%   pdflatex -output-directory=../docs BotWork_Application.tex
+
+\documentclass[aspectratio=169, 11pt]{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{booktabs}
+
+% Цвета
+\definecolor{cBlue}{HTML}{B5D8E1}
+\definecolor{cPink}{HTML}{FBB3C1}
+\definecolor{cRed}{HTML}{FD493D}
+\definecolor{cOrange}{HTML}{FCAF17}
+\definecolor{cPurple}{HTML}{8F00FF}
+\definecolor{cDark}{HTML}{1E1E1E}
+\definecolor{cGray}{HTML}{555555}
+
+% Тема
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamercolor{structure}{fg=cPurple}
+\setbeamercolor{frametitle}{bg=cRed, fg=white}
+\setbeamercolor{block title}{bg=cPurple, fg=white}
+\setbeamercolor{block body}{bg=cBlue!15, fg=cDark}
+\setbeamercolor{item}{fg=cPurple}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% Декоративная полоса
+\newcommand{\cbar}{%
+  \textcolor{cPink}{\rule{0.2\linewidth}{2pt}}%
+  \textcolor{cPurple}{\rule{0.2\linewidth}{2pt}}%
+  \textcolor{cRed}{\rule{0.2\linewidth}{2pt}}%
+  \textcolor{cOrange}{\rule{0.2\linewidth}{2pt}}%
+  \textcolor{cBlue}{\rule{0.2\linewidth}{2pt}}\par\medskip}
+
+% Руб
+\newcommand{\R}{\,руб.}
+
+\title{\textcolor{cPurple}{\Huge BotWork}}
+\subtitle{Платформа для создания Telegram-ботов для бизнеса}
+\author{Заявитель: \_\_\_\_\_\_\_\_\_\_\_\_\_\_}
+\institute{Студенческий Стартап --- VII очередь}
+\date{}
+
+\begin{document}
+
+% === СЛАЙД 1: Титульный ===
+\begin{frame}[plain]
+\titlepage
+\centering\cbar
+\end{frame}
+
+% === СЛАЙД 2: О продукте (проблема + описание) ===
+\begin{frame}{О продукте}
+\cbar
+\textbf{1. Какую проблему решает продукт}
+
+\smallskip
+Более \textbf{50--70 тыс.\ предпринимателей} в РФ ведут продажи через Telegram, но не имеют навыков для создания автоматизированных ботов. Платформы-конструкторы (BotHelp, SendPulse) стоят 10--70 тыс.\R\ и сложны.
+
+\medskip
+\textbf{2. Описание конечного продукта}
+
+\smallskip
+BotWork --- Telegram-боты \guillemotleft{}под ключ\guillemotright{}:
+\begin{itemize}\setlength\itemsep{0pt}
+  \item Автоматическая воронка: приветствие $\to$ презентация $\to$ оплата
+  \item Интеграция платежей (ЮKassa, СБП, Crypto)
+  \item Настройка под нишу (курсы, товары, услуги)
+  \item Визуальный конструктор для проектирования логики бота
+  \item \textcolor{cRed}{\textbf{Цена: 5--25 тыс.\R\ Срок: 3--7 дней. Поддержка 2 нед. бесплатно}}
+\end{itemize}
+\end{frame}
+
+% === СЛАЙД 3: О продукте (область применения) ===
+\begin{frame}{О продукте}
+\cbar
+\textbf{3. Область применения продукта}
+
+\medskip
+\textbf{\textcolor{cGray}{Способ применения:}} Бизнес получает готового бота, работающего 24/7 внутри Telegram.
+
+\medskip
+\textbf{\textcolor{cGray}{Ниши:}}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item \textbf{Образование} --- курсы, вебинары, консультации через воронки
+  \item \textbf{Услуги} --- запись клиентов (салоны, репетиторы), приём заявок
+  \item \textbf{Товары} --- мини-магазины с каталогом, корзиной и оплатой
+\end{itemize}
+
+\medskip
+\textbf{\textcolor{cGray}{Выгоды:}}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item Автоматизация продаж, снижение нагрузки на персонал
+  \item Увеличение конверсии на 15--25\%
+  \item Всё внутри привычного Telegram --- без отдельных приложений
+\end{itemize}
+\end{frame}
+
+% === СЛАЙД 4: Технологичность (техническое решение) ===
+\begin{frame}{Технологичность стартап-проекта}
+\cbar
+\textbf{1. Техническое решение, инновационность}
+
+\medskip
+\textbf{\textcolor{cGray}{Стек:}}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item Backend: Python + aiogram (асинхронный Telegram Bot API)
+  \item Frontend-конструктор: HTML/CSS/JS, drag \& drop
+  \item Модульная архитектура: блоки --- приветствие, кнопки, оплата, сбор данных, условия
+  \item Интеграции: ЮKassa API, СБП, Crypto
+\end{itemize}
+
+\medskip
+\textbf{\textcolor{cGray}{Инновационность:}}
+
+Гибридная модель: клиент проектирует логику бота в визуальном конструкторе, затем передаёт разработчику для профессиональной реализации. Сочетание no-code с персональной разработкой \guillemotleft{}под ключ\guillemotright{} --- модель, которую не предлагают конкуренты.
+\end{frame}
+
+% === СЛАЙД 5: Технологичность (преимущества) ===
+\begin{frame}{Технологичность стартап-проекта}
+\cbar
+\textbf{2. Преимущества технического решения}
+
+\begin{itemize}\setlength\itemsep{3pt}
+  \item \textbf{Конструктор снижает порог входа:} клиент описывает бота визуально, без технических знаний
+  \item \textbf{Шаблонный подход:} типовые боты за 2--3 дня --- высокая скорость
+  \item \textbf{Низкая себестоимость:} разработка бота за 2--3 дня, маржа 50--70\%
+  \item \textbf{Масштабируемость:} модульная архитектура --- быстрая адаптация под ниши
+  \item \textbf{Персонализация:} каждый бот настроен индивидуально (vs. массовые конструкторы)
+\end{itemize}
+\end{frame}
+
+% === СЛАЙД 6: Технологичность (задел) ===
+\begin{frame}{Технологичность стартап-проекта}
+\cbar
+\textbf{3. Имеющийся задел} (октябрь--ноябрь 2025)
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{\textcolor{cGray}{Разработка:}}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item 2 MVP-бота (коучи, товары)
+  \item Интеграция с Telegram Bot API
+  \item Тестовая техподдержка
+  \item Визуальный конструктор ботов
+  \item Сайт-лендинг BotWork
+\end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{\textcolor{cGray}{Рынок:}}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item 3 Telegram-канала
+  \item 5 рекламных постов (8\,000\R)
+  \item \textbf{15 лидов, 2 сделки} (13\%)
+  \item Анализ 5 конкурентов
+  \item Финансовый план
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+% === СЛАЙД 7: Технологичность (нацпроект + ИС) ===
+\begin{frame}{Технологичность стартап-проекта}
+\cbar
+\textbf{4. Соответствие направлению нацпроекта}
+
+\medskip
+Направление \guillemotleft{}Экономика данных\guillemotright{}:
+\begin{itemize}\setlength\itemsep{0pt}
+  \item Развитие цифровых сервисов для бизнеса
+  \item Автоматизация бизнес-процессов с помощью ИТ
+  \item Повышение цифровой зрелости МСП
+\end{itemize}
+
+\bigskip
+\textbf{5. Интеллектуальная собственность}
+
+\medskip
+На текущем этапе зарегистрированная ИС отсутствует.
+Планируется регистрация программы для ЭВМ (конструктор ботов) в Роспатенте в первый год проекта.
+\end{frame}
+
+% === СЛАЙД 8: Аналоги (существующие) ===
+\begin{frame}{Аналоги и конкуренты}
+\cbar
+\textbf{1. Существующие аналоги}
+
+\begin{itemize}\setlength\itemsep{3pt}
+  \item \textbf{BotHelp} --- конструктор автоворонок, 15--50 тыс.\R, сложный интерфейс
+  \item \textbf{SendPulse} --- маркетинговая платформа с модулем ботов, от 12 тыс.\R/год, избыточный функционал
+  \item \textbf{Salebot} --- конструктор автоворонок, от 10 тыс.\R, для продвинутых пользователей
+  \item \textbf{PuzzleBot} --- визуальный конструктор, от 990\R/мес, ограниченный базовый тариф
+\end{itemize}
+
+\medskip
+\textcolor{cRed}{Все конкуренты предлагают инструменты для самостоятельной сборки. BotWork даёт готовое решение \guillemotleft{}под ключ\guillemotright{} по доступной цене.}
+\end{frame}
+
+% === СЛАЙД 9: Аналоги (конкурентные преимущества) ===
+\begin{frame}{Аналоги и конкуренты}
+\cbar
+\textbf{2. Конкурентные преимущества}
+
+\smallskip
+\centering
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Критерий} & \textbf{BotWork} & BotHelp & SendPulse & Salebot \\
+\midrule
+Цена & \textcolor{cRed}{5--25 тыс.} & 15--50 тыс. & 12 тыс.+/год & 10 тыс.+ \\
+Персонализация & \textcolor{cRed}{Под ключ} & Шаблоны & Нет & Частично \\
+Поддержка & \textcolor{cRed}{2 нед. бесп.} & Платная & Тикеты & Платная \\
+Срок запуска & \textcolor{cRed}{3--7 дней} & Самост. & Самост. & Самост. \\
+Конструктор & Да & Да & Да & Да \\
+\bottomrule
+\end{tabular}
+
+\raggedright
+\medskip
+\begin{block}{Уникальное ценностное предложение}
+Telegram-боты \guillemotleft{}под ключ\guillemotright{} в 2--3 раза дешевле рынка, с бесплатной поддержкой и запуском за 3--7 дней. Готовое решение, а не инструмент для самостоятельного освоения.
+\end{block}
+\end{frame}
+
+% === СЛАЙД 10: Востребованность ===
+\begin{frame}{Аналоги и конкуренты}
+\cbar
+\textbf{3. Востребованность продукта}
+
+\medskip
+\textbf{\textcolor{cGray}{Подтверждённый спрос:}}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item 15 лидов через 3 Telegram-канала за 2 месяца
+  \item 2 сделки (конверсия 13\%), доход 30\,000\R
+\end{itemize}
+
+\medskip
+\textbf{\textcolor{cGray}{Обратная связь:}}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item \guillemotleft{}Доступная цена --- не нужно платить 50 тысяч\guillemotright{}
+  \item \guillemotleft{}Не нужно разбираться самому --- получил готового бота\guillemotright{}
+\end{itemize}
+
+\medskip
+\textbf{\textcolor{cGray}{Объективные факторы:}}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item 50--70 тыс.\ предпринимателей используют Telegram для продаж
+  \item Рост интереса к автоматизации: +40\% запросов (2024--2025)
+  \item MAU Telegram в РФ более 100 млн
+\end{itemize}
+\end{frame}
+
+% === СЛАЙД 11: Рынок (область применения) ===
+\begin{frame}{Рынок и потребитель}
+\cbar
+\textbf{1. Область применения продукта}
+
+\begin{itemize}\setlength\itemsep{2pt}
+  \item \textbf{Воронки продаж} --- автоматическая цепочка сообщений к покупке
+  \item \textbf{Запись на услуги} --- салоны, репетиторы, консультанты
+  \item \textbf{Мини-магазины} --- каталог, корзина, онлайн-оплата
+  \item \textbf{FAQ-боты} --- автоответы, снижение нагрузки на поддержку
+  \item \textbf{Рассылки} --- новинки и акции по базе клиентов
+  \item \textbf{Сбор заявок} --- автоприём и маршрутизация менеджерам
+  \item \textbf{Чат-поддержка} --- первичная обработка с передачей оператору
+\end{itemize}
+
+\smallskip
+\textcolor{cGray}{\small Дополнительно: геймификация, лояльность, отзывы, корпоративные боты.}
+\end{frame}
+
+% === СЛАЙД 12: Рынок (TAM-SAM-SOM) ===
+\begin{frame}{Рынок и потребитель}
+\cbar
+\textbf{2. Рынок, сегмент, потребитель}
+
+\smallskip
+\textbf{TAM:} 4,5 млн МСП в РФ, из них около 500 тыс.\ потенциально заинтересованы.
+
+\textbf{SAM:} 50--70 тыс.\ предпринимателей, активно продающих через Telegram (РФ, СНГ).
+
+\textbf{SOM:} 50--100 клиентов в первый год, 300+ к третьему.
+
+\medskip
+\textbf{\textcolor{cGray}{Портрет потребителя:}}
+Владелец малого бизнеса (ИП/ООО), 25--45 лет, оборот до 5 млн\R/год. Ниши: образование, услуги, товары. Ищет доступную автоматизацию.
+
+\medskip
+\textbf{\textcolor{cGray}{Тренды:}} Telegram-коммерция +40\%/год. MAU Telegram в РФ более 100 млн.
+
+\textbf{\textcolor{cGray}{География:}} Россия, СНГ.
+\end{frame}
+
+% === СЛАЙД 13: Рынок (барьеры) ===
+\begin{frame}{Рынок и потребитель}
+\cbar
+\textbf{3. Барьеры для выхода на рынок}
+
+\medskip
+\textbf{1. Высокая конкуренция} --- крупные игроки с большими бюджетами.\\
+\textcolor{cRed}{Решение: цена в 2--3 раза ниже, персонализация, качественная поддержка.}
+
+\medskip
+\textbf{2. Низкий порог входа} --- легко появляются мелкие конкуренты.\\
+\textcolor{cRed}{Решение: клиентская база, репутация, повторные продажи (до 30\%).}
+
+\medskip
+\textbf{3. Зависимость от Telegram API} --- изменения могут потребовать доработки.\\
+\textcolor{cRed}{Решение: мониторинг API, модульная архитектура для быстрой адаптации.}
+
+\medskip
+\textbf{4. Ограниченный маркетинговый бюджет.}\\
+\textcolor{cRed}{Решение: бесплатные каналы, микро-инфлюенсеры (2--5 тыс.\R\ за пост).}
+\end{frame}
+
+% === СЛАЙД 14: План реализации ===
+\begin{frame}{План реализации проекта}
+\cbar
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{Направления:}
+
+\smallskip
+{\small
+\textbf{\textcolor{cGray}{1. Техзадача:}}
+MVP $\to$ рассылки/аналитика $\to$ SaaS
+
+\textbf{\textcolor{cGray}{2. Ресурсы:}}
+Команда 3 чел., хостинг, домен
+
+\textbf{\textcolor{cGray}{3. Затраты:}}
+0м: 20к | 3м: 45к | 12м: 60к
+
+\textbf{\textcolor{cGray}{4. Команда:}}
+Старт: 3 | 12м: +1 разработчик
+
+\textbf{\textcolor{cGray}{5. Доход:}}
+Разовая оплата 5--25 тыс.\R\ + доработки
+}
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{Таймлайн:}
+
+\smallskip
+{\small
+\textbf{\textcolor{cOrange}{Q4 2025 (старт):}}\\
+2 MVP, конструктор, сайт, 2 продажи\\
+\textcolor{cRed}{Доход 30к | Расходы 20к}
+
+\medskip
+\textbf{\textcolor{cOrange}{Q1 2026 (3 мес):}}\\
+Рассылки, аналитика, платежи, 8 ботов\\
+\textcolor{cRed}{Доход 120к | Расходы 45к}\\
+Конверсия 15\%
+
+\medskip
+\textbf{\textcolor{cOrange}{Q3 2026 (12 мес):}}\\
+SaaS-конструктор, 25 ботов\\
+\textcolor{cRed}{Доход 300к | Расходы 60к}\\
+Конверсия 25\%, повторные 30\%
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+% === СЛАЙД 15: Квалификация (1/2) ===
+\begin{frame}{Квалификация заявителя}
+\cbar
+\textbf{1. Команда проекта}
+
+\smallskip
+\textbf{\textcolor{cPurple}{Артемий}} --- тех.\ лидер: разработка ботов, интеграции, техподдержка.\\
+{\small Дисциплины: Python, веб-разработка, базы данных.}
+
+\smallskip
+\textbf{\textcolor{cPurple}{Денис}} --- маркетинг и продажи: продвижение, лидогенерация, переговоры.\\
+{\small Дисциплины: маркетинг, управление проектами.}
+
+\smallskip
+\textbf{\textcolor{cPurple}{Борис}} --- старший разработчик: конструктор, боты.\\
+{\small Дисциплины: программирование, UX/UI.}
+
+\medskip
+\textbf{2. Опыт по теме заявки}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item 2 MVP-бота для реальных клиентов
+  \item Визуальный конструктор чат-ботов
+  \item 2 сделки, доход 30\,000\R
+  \item Анализ рынка и 5 конкурентов
+\end{itemize}
+\end{frame}
+
+% === СЛАЙД 16: Квалификация (2/2) ===
+\begin{frame}{Квалификация заявителя}
+\cbar
+\textbf{3. Участие в программе \guillemotleft{}Стартап как диплом\guillemotright{}}
+
+\smallskip
+\textcolor{cGray}{\small [Указать майнор, если применимо]}
+
+\bigskip
+\textbf{4. Участие в акселераторах, бизнес-инкубаторах}
+
+\smallskip
+\textcolor{cGray}{\small [Указать акселератор HSE, если применимо]}
+
+\bigskip
+\textbf{5. Участие в ПИШ / молодежной лаборатории / СКБ}
+
+\smallskip
+\textcolor{cGray}{\small [Указать, если применимо]}
+\end{frame}
+
+% === СЛАЙД 17: Спасибо за внимание ===
+\begin{frame}[plain]
+\centering
+\vspace{1.5cm}
+{\Huge\bfseries\textcolor{cPurple}{Спасибо за внимание!}}
+
+\bigskip
+\cbar
+
+\bigskip
+{\large BotWork --- Telegram-боты для бизнеса}
+
+\bigskip
+\begin{tabular}{rl}
+  \textbf{Почта:} & [email] \\
+  \textbf{Телефон:} & [телефон] \\
+  \textbf{Telegram:} & @borysikkk \\
+\end{tabular}
+
+\vfill
+{\small Номер заявки: \_\_\_\_\_\_\_ \quad ФИО: \_\_\_\_\_\_\_\_\_\_\_\_\_}
+\end{frame}
+
+\end{document}
