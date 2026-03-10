@@ -20,7 +20,7 @@ USER app
 ENV DB_PATH=/data/botwork.db
 ENV PYTHONUNBUFFERED=1
 
-EXPOSE 5000
+EXPOSE 8000
 
 # gunicorn в продакшне; --workers 2 хватит для старта
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--timeout", "60", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "--timeout", "60", "app:app"]

@@ -166,4 +166,4 @@ if __name__ == '__main__':
     init_db()
     print("BotWork backend запущен на http://localhost:5000")
     print("Админка: http://localhost:5000/admin")
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=8000)

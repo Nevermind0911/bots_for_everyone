@@ -4,7 +4,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "8000:8000"
     volumes:
       # SQLite-файл живёт в db/ на хосте — данные не теряются при ребилде
       - ./db:/data
