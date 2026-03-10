@@ -1,2 +1,32 @@
-*.ssh
+# macOS
 .DS_Store
+*.ssh
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+
+# Database (SQLite файл — не в репо, только схема)
+db/*.db
+db/*.db-shm
+db/*.db-wal
+
+# Docker
+.docker/
+
+# IDE
+.vscode/
+.idea/
+
+# LaTeX build artifacts
+include/*.aux
+include/*.log
+include/*.out
+include/*.toc
+include/*.snm
+include/*.nav

@@ -16,7 +16,6 @@
     <header class="header">
         <div class="container header-inner">
             <div class="logo">
-                <!-- Можно заменить на картинку -->
                 <span class="logo-mark">🤖</span>
                 <span class="logo-text">BotWork</span>
             </div>
@@ -25,7 +24,7 @@
                 <a href="#bots" class="nav-link">Тарифы</a>
                 <a href="#how" class="nav-link">Как работаем</a>
                 <a href="#faq" class="nav-link">FAQ</a>
-                <a href="bot_constractor.html" class="nav-link">Попробовать конструктор</a>
+                <a href="bot_constractor.html" class="nav-link">Конструктор</a>
                 <a href="#contact" class="nav-link nav-link-primary">Написать в Telegram</a>
             </nav>
 
@@ -38,22 +37,23 @@
     </header>
 
     <main>
-        <!-- Hero блок -->
+        <!-- Hero -->
         <section class="hero">
             <div class="container hero-inner">
                 <div class="hero-text">
+                    <div class="hero-badge">⚡ Запуск от 3 дней</div>
                     <h1>Создаю Telegram-ботов <span class="accent">под ваш бизнес</span></h1>
                     <p class="hero-subtitle">
                         Запись клиентов, приём заявок, мини-интернет-магазин, рассылки —
                         всё внутри Telegram. Без сложных приложений и лишней бюрократии.
                     </p>
                     <div class="hero-actions">
-                        <a href="https://t.me/@borysikkk" class="btn btn-primary" target="_blank" rel="noopener">
-                            Обсудить бота в Telegram
+                        <a href="https://t.me/borysikkk" class="btn btn-primary" target="_blank" rel="noopener">
+                            Обсудить в Telegram
                         </a>
-                        <a href="#bots" class="btn btn-secondary">
-                            Смотреть варианты ботов
-                        </a>
+                        <button class="btn btn-secondary" onclick="openOrderModal('')">
+                            Оставить заявку
+                        </button>
                     </div>
                     <p class="hero-note">
                         От первого прототипа до запуска — от 3 до 7 дней.
@@ -69,14 +69,38 @@
                         <li>✔ Ответы на частые вопросы (FAQ-бот)</li>
                         <li>✔ Рассылка сообщений по базе</li>
                     </ul>
-                    <a href="https://t.me/@borysikkk" class="hero-card-cta" target="_blank" rel="noopener">
+                    <a href="https://t.me/borysikkk" class="hero-card-cta" target="_blank" rel="noopener">
                         Написать в Telegram →
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Варианты ботов (конвейер / список) -->
+        <!-- Stats strip -->
+        <section class="stats-strip">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">ботов создано</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-label">довольных клиентов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3–7</span>
+                        <span class="stat-label">дней до запуска</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">поддержка</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Варианты ботов -->
         <section class="section" id="bots">
             <div class="container">
                 <h2 class="section-title">Варианты Telegram-ботов</h2>
@@ -84,14 +108,12 @@
                     Ниже — базовые типы ботов. Можно взять готовый тариф или собрать кастомное решение.
                 </p>
 
-                <!-- Конвейер: горизонтальный список карточек -->
                 <div class="bots-scroller-wrapper">
                     <button class="scroll-btn scroll-btn-left" id="scroll-left" aria-label="Прокрутить влево">
                         ←
                     </button>
 
                     <div class="bots-scroller" id="bots-scroller">
-                        <!-- Карточка 1 -->
                         <article class="bot-card">
                             <div class="bot-card-header">
                                 <h3>Бот-визитка</h3>
@@ -104,13 +126,11 @@
                                 <li>Кнопка «написать» и «заказать»</li>
                                 <li>Простой сценарий диалога</li>
                             </ul>
-                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
-                                rel="noopener">
-                                Заказать бот-визитку в Telegram
-                            </a>
+                            <button class="btn btn-outline bot-btn" data-bot-type="Бот-визитка">
+                                Заказать бот-визитку
+                            </button>
                         </article>
 
-                        <!-- Карточка 2 -->
                         <article class="bot-card">
                             <div class="bot-card-header">
                                 <h3>Бот для заявок</h3>
@@ -123,13 +143,11 @@
                                 <li>Простая админ-панель в Telegram</li>
                                 <li>Настраиваемые вопросы</li>
                             </ul>
-                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
-                                rel="noopener">
-                                Оставить заявку через Telegram
-                            </a>
+                            <button class="btn btn-outline bot-btn" data-bot-type="Бот для заявок">
+                                Заказать бота для заявок
+                            </button>
                         </article>
 
-                        <!-- Карточка 3 -->
                         <article class="bot-card">
                             <div class="bot-card-header">
                                 <h3>Магазин-бот</h3>
@@ -142,13 +160,11 @@
                                 <li>Интеграция с оплатой (по договорённости)</li>
                                 <li>Уведомления о новых заказах</li>
                             </ul>
-                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
-                                rel="noopener">
-                                Обсудить магазин-бота в Telegram
-                            </a>
+                            <button class="btn btn-outline bot-btn" data-bot-type="Магазин-бот">
+                                Заказать магазин-бота
+                            </button>
                         </article>
 
-                        <!-- Карточка 4 -->
                         <article class="bot-card">
                             <div class="bot-card-header">
                                 <h3>FAQ-бот / поддержка</h3>
@@ -161,13 +177,11 @@
                                 <li>Сбор обратной связи</li>
                                 <li>Простые сценарии на кнопках</li>
                             </ul>
-                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
-                                rel="noopener">
-                                Заказать FAQ-бота в Telegram
-                            </a>
+                            <button class="btn btn-outline bot-btn" data-bot-type="FAQ-бот / поддержка">
+                                Заказать FAQ-бота
+                            </button>
                         </article>
 
-                        <!-- Карточка 5 -->
                         <article class="bot-card">
                             <div class="bot-card-header">
                                 <h3>Кастомный бот</h3>
@@ -180,29 +194,27 @@
                                 <li>Подбор архитектуры под нагрузку</li>
                                 <li>Сопровождение и доработка</li>
                             </ul>
-                            <a href="https://t.me/@borysikkk" class="btn btn-outline bot-btn" target="_blank"
-                                rel="noopener">
+                            <button class="btn btn-outline bot-btn" data-bot-type="Кастомный бот">
                                 Обсудить кастомного бота
-                            </a>
+                            </button>
                         </article>
 
-                        <!-- Карточка: Конструктор ботов -->
-<article class="bot-card">
-  <div class="bot-card-header">
-    <h3>Конструктор ботов</h3>
-    <span class="bot-tag">создайте свой сценарий</span>
-  </div>
-  <p class="bot-price">Зависит от объема</p>
-  <ul class="bot-list">
-    <li>Самостоятельно соберите логику бота</li>
-    <li>Настройте сообщения, кнопки, оплату</li>
-    <li>Отправьте мне — обсудим и запустим</li>
-    <li>Идеально для кастомных идей</li>
-  </ul>
-  <a href="constructor.html" class="btn btn-outline bot-btn">
-    Попробовать конструктор
-  </a>
-</article>
+                        <article class="bot-card">
+                            <div class="bot-card-header">
+                                <h3>Конструктор ботов</h3>
+                                <span class="bot-tag">создайте свой сценарий</span>
+                            </div>
+                            <p class="bot-price">Зависит от объема</p>
+                            <ul class="bot-list">
+                                <li>Самостоятельно соберите логику бота</li>
+                                <li>Настройте сообщения, кнопки, оплату</li>
+                                <li>Отправьте мне — обсудим и запустим</li>
+                                <li>Идеально для кастомных идей</li>
+                            </ul>
+                            <a href="bot_constractor.html" class="btn btn-outline bot-btn">
+                                Попробовать конструктор
+                            </a>
+                        </article>
                     </div>
 
                     <button class="scroll-btn scroll-btn-right" id="scroll-right" aria-label="Прокрутить вправо">
@@ -210,9 +222,8 @@
                     </button>
                 </div>
 
-                <!-- Альтернативно: обычный список (на мобиле он и так выглядит как список) -->
                 <p class="section-note">
-                    Не нашли подходящий вариант? Напишите, и я предложу решение под вашу задачу.
+                    Не нашли подходящий вариант? <a href="#contact" style="color:#4f46e5">Напишите</a>, и я предложу решение под вашу задачу.
                 </p>
             </div>
         </section>
@@ -224,13 +235,13 @@
                 <div class="steps">
                     <div class="step">
                         <div class="step-number">1</div>
-                        <h3>Заявка в Telegram</h3>
-                        <p>Вы пишете мне в Telegram, кратко описываете задачу и что хотите от бота.</p>
+                        <h3>Заявка</h3>
+                        <p>Оставляете заявку на сайте или пишете в Telegram — кратко описываете задачу.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">2</div>
                         <h3>Обсуждение и сценарий</h3>
-                        <p>Совместно формируем структуру бота: какие кнопки, ветки диалога, интеграции.</p>
+                        <p>Совместно формируем структуру бота: кнопки, ветки диалога, интеграции.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">3</div>
@@ -282,6 +293,14 @@
                             Да, по договорённости можно добавлять новые функции, интеграции и менять логику.
                         </p>
                     </details>
+
+                    <details class="faq-item">
+                        <summary>Как происходит оплата?</summary>
+                        <p>
+                            Обычно 50% предоплата перед началом работы, остаток — после сдачи проекта.
+                            Принимаю переводы на карту.
+                        </p>
+                    </details>
                 </div>
             </div>
         </section>
@@ -289,8 +308,8 @@
         <!-- Контакты -->
         <section class="section section-alt" id="contact">
             <div class="container contact-inner">
-                <div>
-                    <h2 class="section-title">Написать мне в Telegram</h2>
+                <div class="contact-text">
+                    <h2 class="section-title">Свяжитесь со мной</h2>
                     <p class="section-subtitle">
                         Кратко опишите, какой бот вам нужен: для чего, что он должен уметь и какие сроки.
                     </p>
@@ -299,10 +318,28 @@
                         <li>✔ Сориентирую по срокам и стоимости</li>
                         <li>✔ Предложу несколько вариантов реализации</li>
                     </ul>
-                    <a href="https://t.me/@borysikkk" class="btn btn-primary contact-btn" target="_blank"
+                    <a href="https://t.me/borysikkk" class="btn btn-primary contact-btn" target="_blank"
                         rel="noopener">
                         Написать в Telegram
                     </a>
+                </div>
+
+                <div class="contact-form-wrap">
+                    <h3 class="form-title">или оставьте заявку здесь</h3>
+                    <form id="contact-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input class="form-input" type="text" name="name" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-input" type="text" name="contact" placeholder="Телефон или Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-input form-textarea" name="message" placeholder="Кратко опишите задачу..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%">Отправить заявку</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -310,10 +347,41 @@
 
     <footer class="footer">
         <div class="container footer-inner">
-            <span>© 2025 BotWorks. Создание Telegram-ботов.</span>
-            <a href="https://t.me/@borysikkk" target="_blank" rel="noopener">Связаться в Telegram</a>
+            <span>© 2025 BotWork. Создание Telegram-ботов.</span>
+            <a href="https://t.me/borysikkk" target="_blank" rel="noopener">Связаться в Telegram</a>
         </div>
     </footer>
+
+    <!-- Модальная форма заявки -->
+    <div class="modal-overlay" id="order-modal" role="dialog" aria-modal="true" aria-label="Оставить заявку">
+        <div class="modal">
+            <button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
+            <h2 class="modal-title">Оставить заявку</h2>
+            <p class="modal-subtitle">Заполните форму — свяжемся в течение часа</p>
+            <form id="order-form" novalidate>
+                <div class="form-group">
+                    <label class="form-label">Ваше имя</label>
+                    <input class="form-input" type="text" name="name" placeholder="Имя" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Телефон или Email</label>
+                    <input class="form-input" type="text" name="contact" placeholder="+7 999 ... или email@mail.ru" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Тип бота</label>
+                    <input class="form-input" type="text" name="bot_type" id="bot-type-field" placeholder="Выберите из карточек или напишите свой вариант">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Описание задачи</label>
+                    <textarea class="form-input form-textarea" name="description" placeholder="Расскажите, что хотите автоматизировать..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast уведомление -->
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
     <script src="script.js"></script>
 </body>

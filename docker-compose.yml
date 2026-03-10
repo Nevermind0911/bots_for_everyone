@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      # SQLite-файл живёт в db/ на хосте — данные не теряются при ребилде
+      - ./db:/data
+    environment:
+      - DB_PATH=/data/botwork.db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/admin')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
