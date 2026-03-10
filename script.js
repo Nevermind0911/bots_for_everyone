@@ -1,5 +1,5 @@
 // URL бэкенда — поменяйте на продакшн-адрес при деплое
-var API_URL = "http://localhost:5000";
+var API_URL = "http://localhost:8000";
 
 document.addEventListener("DOMContentLoaded", function () {
 
